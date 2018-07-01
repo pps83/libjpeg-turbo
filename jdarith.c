@@ -626,7 +626,7 @@ decode_mcu(j_decompress_ptr cinfo, JBLOCKROW *MCU_data)
  */
 
 METHODDEF(void)
-start_pass(j_decompress_ptr cinfo)
+start_pass2(j_decompress_ptr cinfo)
 {
   arith_entropy_ptr entropy = (arith_entropy_ptr)cinfo->entropy;
   int ci, tbl;
@@ -744,7 +744,7 @@ jinit_arith_decoder(j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr)cinfo, JPOOL_IMAGE,
                                 sizeof(arith_entropy_decoder));
   cinfo->entropy = (struct jpeg_entropy_decoder *)entropy;
-  entropy->pub.start_pass = start_pass;
+  entropy->pub.start_pass = start_pass2;
 
   /* Mark tables unallocated */
   for (i = 0; i < NUM_ARITH_TBLS; i++) {

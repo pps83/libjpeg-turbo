@@ -6,7 +6,7 @@
  * For conditions of distribution and use, see the accompanying README.ijg
  * file.
  */
-
+#pragma once
 #define JPEG_INTERNALS
 #include "jpeglib.h"
 #include "jpegcomp.h"

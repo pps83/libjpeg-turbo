@@ -8,7 +8,7 @@
  *
  * This file contains the master control structure for the JPEG decompressor.
  */
-
+#pragma once
 /* Private state */
 
 typedef struct {

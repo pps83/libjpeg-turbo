@@ -160,7 +160,7 @@ fill_mem_input_buffer(j_decompress_ptr cinfo)
  */
 
 METHODDEF(void)
-skip_input_data(j_decompress_ptr cinfo, long num_bytes)
+skip_input_data1(j_decompress_ptr cinfo, long num_bytes)
 {
   struct jpeg_source_mgr *src = cinfo->src;
 
@@ -201,7 +201,7 @@ skip_input_data(j_decompress_ptr cinfo, long num_bytes)
  */
 
 METHODDEF(void)
-term_source(j_decompress_ptr cinfo)
+term_source1(j_decompress_ptr cinfo)
 {
   /* no work necessary here */
 }
@@ -244,9 +244,9 @@ jpeg_stdio_src(j_decompress_ptr cinfo, FILE *infile)
   src = (my_src_ptr)cinfo->src;
   src->pub.init_source = init_source;
   src->pub.fill_input_buffer = fill_input_buffer;
-  src->pub.skip_input_data = skip_input_data;
+  src->pub.skip_input_data = skip_input_data1;
   src->pub.resync_to_restart = jpeg_resync_to_restart; /* use default method */
-  src->pub.term_source = term_source;
+  src->pub.term_source = term_source1;
   src->infile = infile;
   src->pub.bytes_in_buffer = 0; /* forces fill_input_buffer on first read */
   src->pub.next_input_byte = NULL; /* until buffer loaded */
@@ -286,9 +286,9 @@ jpeg_mem_src(j_decompress_ptr cinfo, const unsigned char *inbuffer,
   src = cinfo->src;
   src->init_source = init_mem_source;
   src->fill_input_buffer = fill_mem_input_buffer;
-  src->skip_input_data = skip_input_data;
+  src->skip_input_data = skip_input_data1;
   src->resync_to_restart = jpeg_resync_to_restart; /* use default method */
-  src->term_source = term_source;
+  src->term_source = term_source1;
   src->bytes_in_buffer = (size_t)insize;
   src->next_input_byte = (const JOCTET *)inbuffer;
 }

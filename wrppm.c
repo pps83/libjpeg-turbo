@@ -87,7 +87,7 @@ typedef ppm_dest_struct *ppm_dest_ptr;
  */
 
 METHODDEF(void)
-put_pixel_rows(j_decompress_ptr cinfo, djpeg_dest_ptr dinfo,
+put_pixel_rows1(j_decompress_ptr cinfo, djpeg_dest_ptr dinfo,
                JDIMENSION rows_supplied)
 {
   ppm_dest_ptr dest = (ppm_dest_ptr)dinfo;
@@ -353,7 +353,7 @@ jinit_write_ppm(j_decompress_ptr cinfo)
     dest->pixrow = (JSAMPROW)dest->iobuffer;
     dest->pub.buffer = &dest->pixrow;
     dest->pub.buffer_height = 1;
-    dest->pub.put_pixel_rows = put_pixel_rows;
+    dest->pub.put_pixel_rows = put_pixel_rows1;
   }
 
   return (djpeg_dest_ptr)dest;

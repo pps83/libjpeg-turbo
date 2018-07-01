@@ -12,7 +12,7 @@
  * that are shared between the sequential decoder (jdhuff.c) and the
  * progressive decoder (jdphuff.c).  No other modules need to see these.
  */
-
+#pragma once
 #include "jconfigint.h"
 
 

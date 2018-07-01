@@ -119,7 +119,7 @@ rgb_gray_convert_internal(j_compress_ptr cinfo, JSAMPARRAY input_buf,
 
 INLINE
 LOCAL(void)
-rgb_rgb_convert_internal(j_compress_ptr cinfo, JSAMPARRAY input_buf,
+rgb_rgb_convert_internal_c(j_compress_ptr cinfo, JSAMPARRAY input_buf,
                          JSAMPIMAGE output_buf, JDIMENSION output_row,
                          int num_rows)
 {

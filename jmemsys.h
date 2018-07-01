@@ -30,7 +30,7 @@
  * On most systems, these ARE malloc and free.  jpeg_free_small is passed the
  * size of the object being freed, just in case it's needed.
  */
-
+#pragma once
 EXTERN(void *) jpeg_get_small(j_common_ptr cinfo, size_t sizeofobject);
 EXTERN(void) jpeg_free_small(j_common_ptr cinfo, void *object,
                              size_t sizeofobject);

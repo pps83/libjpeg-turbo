@@ -79,7 +79,7 @@
  * be aware of the option to know how many components to work on.
  */
 
-
+#pragma once
 /*
  * Codes for supported types of image transformations.
  */

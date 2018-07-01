@@ -94,7 +94,7 @@ typedef union {
  */
 
 METHODDEF(void)
-start_pass(j_decompress_ptr cinfo)
+start_pass1(j_decompress_ptr cinfo)
 {
   my_idct_ptr idct = (my_idct_ptr)cinfo->idct;
   int ci, i;
@@ -337,7 +337,7 @@ jinit_inverse_dct(j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr)cinfo, JPOOL_IMAGE,
                                 sizeof(my_idct_controller));
   cinfo->idct = (struct jpeg_inverse_dct *)idct;
-  idct->pub.start_pass = start_pass;
+  idct->pub.start_pass = start_pass1;
 
   for (ci = 0, compptr = cinfo->comp_info; ci < cinfo->num_components;
        ci++, compptr++) {

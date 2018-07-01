@@ -87,6 +87,10 @@ typedef my_color_converter *my_cconvert_ptr;
 
 /* Include inline routines for colorspace extensions */
 
+#define RGB_RED         0       /* Offset of Red in an RGB scanline element */
+#define RGB_GREEN       1       /* Offset of Green */
+#define RGB_BLUE        2       /* Offset of Blue */
+#define RGB_PIXELSIZE   3       /* JSAMPLEs per RGB scanline element */
 #include "jccolext.c"
 #undef RGB_RED
 #undef RGB_GREEN
@@ -99,7 +103,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #define RGB_PIXELSIZE  EXT_RGB_PIXELSIZE
 #define rgb_ycc_convert_internal  extrgb_ycc_convert_internal
 #define rgb_gray_convert_internal  extrgb_gray_convert_internal
-#define rgb_rgb_convert_internal  extrgb_rgb_convert_internal
+#define rgb_rgb_convert_internal_c  extrgb_rgb_convert_internal
 #include "jccolext.c"
 #undef RGB_RED
 #undef RGB_GREEN
@@ -107,7 +111,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #undef RGB_PIXELSIZE
 #undef rgb_ycc_convert_internal
 #undef rgb_gray_convert_internal
-#undef rgb_rgb_convert_internal
+#undef rgb_rgb_convert_internal_c
 
 #define RGB_RED  EXT_RGBX_RED
 #define RGB_GREEN  EXT_RGBX_GREEN
@@ -115,7 +119,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #define RGB_PIXELSIZE  EXT_RGBX_PIXELSIZE
 #define rgb_ycc_convert_internal  extrgbx_ycc_convert_internal
 #define rgb_gray_convert_internal  extrgbx_gray_convert_internal
-#define rgb_rgb_convert_internal  extrgbx_rgb_convert_internal
+#define rgb_rgb_convert_internal_c  extrgbx_rgb_convert_internal
 #include "jccolext.c"
 #undef RGB_RED
 #undef RGB_GREEN
@@ -123,7 +127,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #undef RGB_PIXELSIZE
 #undef rgb_ycc_convert_internal
 #undef rgb_gray_convert_internal
-#undef rgb_rgb_convert_internal
+#undef rgb_rgb_convert_internal_c
 
 #define RGB_RED  EXT_BGR_RED
 #define RGB_GREEN  EXT_BGR_GREEN
@@ -131,7 +135,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #define RGB_PIXELSIZE  EXT_BGR_PIXELSIZE
 #define rgb_ycc_convert_internal  extbgr_ycc_convert_internal
 #define rgb_gray_convert_internal  extbgr_gray_convert_internal
-#define rgb_rgb_convert_internal  extbgr_rgb_convert_internal
+#define rgb_rgb_convert_internal_c  extbgr_rgb_convert_internal
 #include "jccolext.c"
 #undef RGB_RED
 #undef RGB_GREEN
@@ -139,7 +143,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #undef RGB_PIXELSIZE
 #undef rgb_ycc_convert_internal
 #undef rgb_gray_convert_internal
-#undef rgb_rgb_convert_internal
+#undef rgb_rgb_convert_internal_c
 
 #define RGB_RED  EXT_BGRX_RED
 #define RGB_GREEN  EXT_BGRX_GREEN
@@ -147,7 +151,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #define RGB_PIXELSIZE  EXT_BGRX_PIXELSIZE
 #define rgb_ycc_convert_internal  extbgrx_ycc_convert_internal
 #define rgb_gray_convert_internal  extbgrx_gray_convert_internal
-#define rgb_rgb_convert_internal  extbgrx_rgb_convert_internal
+#define rgb_rgb_convert_internal_c  extbgrx_rgb_convert_internal
 #include "jccolext.c"
 #undef RGB_RED
 #undef RGB_GREEN
@@ -155,7 +159,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #undef RGB_PIXELSIZE
 #undef rgb_ycc_convert_internal
 #undef rgb_gray_convert_internal
-#undef rgb_rgb_convert_internal
+#undef rgb_rgb_convert_internal_c
 
 #define RGB_RED  EXT_XBGR_RED
 #define RGB_GREEN  EXT_XBGR_GREEN
@@ -163,7 +167,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #define RGB_PIXELSIZE  EXT_XBGR_PIXELSIZE
 #define rgb_ycc_convert_internal  extxbgr_ycc_convert_internal
 #define rgb_gray_convert_internal  extxbgr_gray_convert_internal
-#define rgb_rgb_convert_internal  extxbgr_rgb_convert_internal
+#define rgb_rgb_convert_internal_c  extxbgr_rgb_convert_internal
 #include "jccolext.c"
 #undef RGB_RED
 #undef RGB_GREEN
@@ -171,7 +175,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #undef RGB_PIXELSIZE
 #undef rgb_ycc_convert_internal
 #undef rgb_gray_convert_internal
-#undef rgb_rgb_convert_internal
+#undef rgb_rgb_convert_internal_c
 
 #define RGB_RED  EXT_XRGB_RED
 #define RGB_GREEN  EXT_XRGB_GREEN
@@ -179,7 +183,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #define RGB_PIXELSIZE  EXT_XRGB_PIXELSIZE
 #define rgb_ycc_convert_internal  extxrgb_ycc_convert_internal
 #define rgb_gray_convert_internal  extxrgb_gray_convert_internal
-#define rgb_rgb_convert_internal  extxrgb_rgb_convert_internal
+#define rgb_rgb_convert_internal_c  extxrgb_rgb_convert_internal
 #include "jccolext.c"
 #undef RGB_RED
 #undef RGB_GREEN
@@ -187,7 +191,7 @@ typedef my_color_converter *my_cconvert_ptr;
 #undef RGB_PIXELSIZE
 #undef rgb_ycc_convert_internal
 #undef rgb_gray_convert_internal
-#undef rgb_rgb_convert_internal
+#undef rgb_rgb_convert_internal_c
 
 
 /*
@@ -357,7 +361,7 @@ rgb_rgb_convert(j_compress_ptr cinfo, JSAMPARRAY input_buf,
                                  num_rows);
     break;
   default:
-    rgb_rgb_convert_internal(cinfo, input_buf, output_buf, output_row,
+    rgb_rgb_convert_internal_c(cinfo, input_buf, output_buf, output_row,
                              num_rows);
     break;
   }

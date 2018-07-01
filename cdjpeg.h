@@ -11,7 +11,7 @@
  * This file contains common declarations for the sample applications
  * cjpeg and djpeg.  It is NOT used by the core JPEG library.
  */
-
+#pragma once
 #define JPEG_CJPEG_DJPEG        /* define proper options in jconfig.h */
 #define JPEG_INTERNAL_OPTIONS   /* cjpeg.c,djpeg.c need to see xxx_SUPPORTED */
 #include "jinclude.h"

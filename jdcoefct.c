@@ -42,7 +42,7 @@ METHODDEF(int) decompress_smooth_data(j_decompress_ptr cinfo,
  */
 
 METHODDEF(void)
-start_input_pass(j_decompress_ptr cinfo)
+start_input_pass1(j_decompress_ptr cinfo)
 {
   cinfo->input_iMCU_row = 0;
   start_iMCU_row(cinfo);
@@ -54,7 +54,7 @@ start_input_pass(j_decompress_ptr cinfo)
  */
 
 METHODDEF(void)
-start_output_pass(j_decompress_ptr cinfo)
+start_output_pass1(j_decompress_ptr cinfo)
 {
 #ifdef BLOCK_SMOOTHING_SUPPORTED
   my_coef_ptr coef = (my_coef_ptr)cinfo->coef;
@@ -632,8 +632,8 @@ jinit_d_coef_controller(j_decompress_ptr cinfo, boolean need_full_buffer)
     (*cinfo->mem->alloc_small) ((j_common_ptr)cinfo, JPOOL_IMAGE,
                                 sizeof(my_coef_controller));
   cinfo->coef = (struct jpeg_d_coef_controller *)coef;
-  coef->pub.start_input_pass = start_input_pass;
-  coef->pub.start_output_pass = start_output_pass;
+  coef->pub.start_input_pass = start_input_pass1;
+  coef->pub.start_output_pass = start_output_pass1;
 #ifdef BLOCK_SMOOTHING_SUPPORTED
   coef->coef_bits_latch = NULL;
 #endif

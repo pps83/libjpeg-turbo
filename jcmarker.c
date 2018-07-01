@@ -16,8 +16,8 @@
 #include "jinclude.h"
 #include "jpeglib.h"
 #include "jpegcomp.h"
-
-
+#ifndef JPEG_MARKER_defined
+#define JPEG_MARKER_defined
 typedef enum {                  /* JPEG marker codes */
   M_SOF0  = 0xc0,
   M_SOF1  = 0xc1,
@@ -84,7 +84,7 @@ typedef enum {                  /* JPEG marker codes */
 
   M_ERROR = 0x100
 } JPEG_MARKER;
-
+#endif
 
 /* Private state */
 
